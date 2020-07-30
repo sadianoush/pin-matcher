@@ -18,35 +18,27 @@
             </div>
             <div class="col-md-6">
                 <div class="input-section half-width">
-                    <input class="form-control" type="button">
+                    <div id = "screen">
+                    <input class="form-control" type="button" value = "0" id = "screen-input">
                         <div class="numbers">
                         <div class="calc-body">
                             <div class = "calc-button-row"></div>
-                            <tr>
-                            </tr>
-                            <td><div class = "button" name="seven" value="7" onclick="calculator.button.row += '7'"></td>
-                                <td><div class ="button" name="eight" value="8" onclick="calculator.display.value += '8'"></td>
-                                <td><div class="button" name="nine" value="9" onclick="calculator.display.value += '9'"></td>
-                             </tr>
-                             <tr>
-                                <td><div class = "button" name="four" value="4" onclick="calculator.display.value += '4'"></td>
-                                <td><div class="button" name="five" value="5" onclick="calculator.display.value += '5'"></td>
-                                <td><div class="button" name="six" value="6" onclick="calculator.display.value += '6'"></td>
-                             </tr>
-                             <tr>
-                                <td><div class ="button" name="one" value="1" onclick="calculator.display.value += '1'"></td>
-                                <td><div class="button" name="two" value="2" onclick="calculator.display.value += '2'"></td>
-                                <td><div class="button" name="three" value="3" onclick="calculator.display.value += '3'"></td>
-                             </tr>
-                             <tr>
-                                <td><div class="button" name="doit" value="=" onclick="calculator.display.value = eval(calculator.display.value)"></td>
-                                <td><div class="button" name="zero" value="0" onclick="calculator.display.value += '0'"></td>
-                                <td><div class="button" id="clear" name="clear" value="c" onclick="calculator.display.value = ''"></td>
-                             </tr>
-                          
-              
-        
-                         <button type="submit" class="submit-btn">Submit</button>
+                            <div id = "buttons">
+                                <button id = "btn1" onclick="buttonClick('7')">7</button>
+                                <button id = "btn2" onclick="buttonClick('8')">8</button>
+                                <button id = "btn3" onclick="buttonClick('9')">9</button>
+                                <button id = "btn4" onclick="buttonClick('4')">4</button>
+                                <button id = "btn5" onclick="buttonClick('5')">5</button>
+                                <button id = "btn6" onclick="buttonClick('6')">6</button>
+                                <button id = "btn7" onclick="buttonClick('1')">1</button>
+                                <button id = "btn8" onclick="buttonClick('2')">2</button>
+                                <button id = "btn9" onclick="buttonClick('3')">3</button>
+                                <button id = "btn10" onclick="backSpace()">&lt;</button>
+                                <button id = "btn11" onclick="buttonClick('0')">0</button>
+                                <button id = "btn12" onclick="buttonClick('')">C</button>
+                            </div>
+                            </div> 
+                         <button type="submit" class="submit-btn" id = "submitBtn">Submit</button>
                          <p class="action-left">3 try left</p>
                         </div>
                     </div>
@@ -54,14 +46,37 @@
             </div>
         </div>
         <div id ="pin-section" class="notify-section">
-            <p class="notify">❌ Pin Didn't Match, Please try again</p>
-            <p class="notify">✅ Pin Matched... Secret door is opening for you</p>
+            <p id ="first-notify" class="notify">❌ Pin Didn't Match, Please try again</p>
+            <p id = "second-notify" class="notify">✅ Pin Matched... Secret door is opening for you</p>
         </div>
     </div>
     <script>
   document.getElementById('generate').addEventListener("click", function(){
-  document.getElementById('random-number').value =  Math.floor(Math.random() * 9999) + 1000;
+  document.getElementById('random-number').value =  Math.floor(Math.random() * 9000) + 1000;
 })
+
+document.getElementById('screen-input').value = '';
+function buttonClick(num){
+    let screen = document.getElementById('screen-input');
+    screen.value += num;
+    if(num == ''){
+        screen.value = num;
+    }
+}
+function backSpace(){
+    var screen = document.getElementById('screen-input').value;
+    var backSpace = screen.slice(0, screen.length - 1);
+    document.getElementById('screen-input').value = backSpace;
+}
+function equalTo(){
+    let screen = document.getElementById('screen-input');
+    screen.value = eval(screen.value);
+}
+
+
+
+
+
 
 
      
